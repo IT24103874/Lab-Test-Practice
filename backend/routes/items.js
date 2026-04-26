@@ -14,11 +14,12 @@ router.get('/', async (req, res) => {
 
 // POST /api/items - Create a new item
 router.post('/', async (req, res) => {
-  const { name, price } = req.body; // TODO (Student): Read the new fields here
+  const { name, price, description } = req.body; // TODO (Student): Read the new fields here
 
   const item = new Item({
     name,
     price,
+    description
     // TODO (Student): Assign the new fields here
   });
 
@@ -31,5 +32,8 @@ router.post('/', async (req, res) => {
 });
 
 // TODO (Student): Implement DELETE /api/items/:id route here
+router.delete('/id', async (req, res) => {
+    await Item.findByIdAndDelete(req.param.id);
+});
 
 module.exports = router;

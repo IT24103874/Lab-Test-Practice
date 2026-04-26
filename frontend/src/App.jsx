@@ -6,7 +6,7 @@ function App() {
   const [formData, setFormData] = useState({
     name: '',
     price: '',
-    // TODO (Student): Add missing fields for the state
+    description: ''
   });
 
   const fetchItems = async () => {
@@ -34,7 +34,7 @@ function App() {
       setFormData({
         name: '',
         price: '',
-        // TODO (Student): Clear the missing fields here
+        description: ''
       });
     } catch (err) {
       console.error('Error creating item:', err);
@@ -44,7 +44,12 @@ function App() {
   const handleDelete = async (id) => {
     // TODO (Student): Implement the delete functionality here
     // Hint: Use axios.delete() and then call fetchItems()
-    console.log(`Delete item with ID: ${id}`);
+    try {
+        await axios.delete('https://lab-test-practice-1.onrender.com/api/items/$id');
+        fetchItems();
+    } catch (err){
+        console.error("Cannot delete item with ID: ${id}");
+    }
   };
 
   return (
@@ -75,6 +80,17 @@ function App() {
               required
             />
           </div>
+
+          <div className="form-group">
+                      <label>description:</label>
+                      <input
+                        type="text"
+                        name="description"
+                        value={formData.description}
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
 
           {/* TODO (Student): Add input fields for 'description' and 'category' here */}
 
