@@ -45,10 +45,10 @@ function App() {
     // TODO (Student): Implement the delete functionality here
     // Hint: Use axios.delete() and then call fetchItems()
     try {
-        await axios.delete('https://lab-test-practice-1.onrender.com/api/items/$id');
+        await axios.delete(`https://lab-test-practice-1.onrender.com/api/items/$id`);
         fetchItems();
     } catch (err){
-        console.error("Cannot delete item with ID: ${id}");
+        console.error(`Cannot delete item with ID: ${id}``);
     }
   };
 
